@@ -48,6 +48,21 @@ class Game:
 		self.playerX += self.playerXv
 		self.playerY -= self.playerYv
 		self.playerYv -= 0.3
+
+		# Add boundaries
+		if self.playerX < 20:
+			self.playerX = 20
+			self.playerXv = -self.playerXv / 10
+		if self.playerX > 560:
+			self.playerX = 560
+			self.playerXv = -self.playerXv / 10
+		if self.playerY < 0:
+			self.playerY = 0
+			self.playerYv = -self.playerYv / 10
+		if self.playerY > 560:
+			self.playerY = 560
+			self.playerYv = -self.playerYv / 10
+
 		self.tk.after(10, self.loop)
 
 if __name__ == '__main__':
