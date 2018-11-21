@@ -15,6 +15,8 @@
 <p>You are controlling the green square</p>
 <p>The goal is to get points</p>
 <p>You earn points by having an upward velocity while hitting one of the red squares</p>
+<p>You also earn points by smashing down on red squares</p>
+<p>You smash down on red squares by pressing and releasing the down button</p>
 <p>If you hit one of the red squares without an upward velocity, you die</p>
 <p>The difficulty grows over time</p>
 
