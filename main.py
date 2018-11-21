@@ -20,7 +20,7 @@ class Game:
 		self.canvas.pack()
 
 		# Key handling
-		self.tk.bind_all("<Key>", self.keyHandle)
+		self.tk.bind_all("<KeyPress>", self.keyHandle)
 
 		# Start game loop
 		self.tk.after(10, self.loop)
@@ -40,9 +40,14 @@ class Game:
 	def loop(self):
 		# Game loop
 		self.canvas.delete("all")
-		
+
 		# Render player
 		self.canvas.create_rectangle(self.playerX, self.playerY, self.playerX + 40, self.playerY + 40, fill="Green", outline="black")
+
+		# Update player stats
+		self.playerX += self.playerXv
+		self.playerY -= self.playerYv
+		self.playerYv -= 0.3
 		self.tk.after(10, self.loop)
 
 if __name__ == '__main__':
