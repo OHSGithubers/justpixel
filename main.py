@@ -95,6 +95,10 @@ class Game:
 			self.playerYv = -self.playerYv / 3
 			self.playerJumped = False
 
+		# Render dands
+		for dand in self.dands:
+			self.canvas.create_rectangle(dand["x"], dand["y"], dand["x"] + 10, dand["y"] + 10, fill="Red", outline="black")
+
 		self.tk.after(10, self.loop)
 
 	def dandGenerate(self):
