@@ -96,21 +96,18 @@ class Game:
 		# Render dands and update dands
 		for dand in self.dands:
 			# Rendering dand
-			self.canvas.create_rectangle(dand["x"], dand["y"], dand["x"] + 10, dand["y"] + 10, fill="Red", outline="black")
-			# Updating dand
-			dand["x"] += dand["xvel"]
-			dand["y"] -= dand["yvel"]
+			self.canvas.move(dand["object"], dand["xvel"], -dand["yvel"])
 			dand["yvel"] -= 0.3
 
 		self.tk.after(10, self.loop)
 
 	def dandGenerate(self):
 		while True:
+			x, y = random.randint(40, 520), random.randint(20, 100)
 			self.dands.append({
-				"x": random.randint(40, 520),
-				"y": random.randint(20, 100),
 				"yvel": 0,
-				"xvel": random.randint(-5, 5)
+				"xvel": random.randint(-5, 5),
+				"object": self.canvas.create_rectangle(x, y, x + 10, y + 10, fill="Red", outline="black")
 				})
 			time.sleep(random.random())
 
