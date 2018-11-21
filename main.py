@@ -32,7 +32,7 @@ class Game:
 
 		if clck.keysym == "Left":
 			self.playerXv -= 1
-			
+
 		if clck.keysym == "Right":
 			self.playerXv += 1
 
