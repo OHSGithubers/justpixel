@@ -18,4 +18,8 @@
 <p>If you hit one of the red squares without an upward velocity, you die</p>
 <p>The difficulty grows over time</p>
 
-<video>playrec.mov</video>
+See for playing: <video>playrec.mov</video>
+
+<p>Download the <a href="https://github.com/OHSGithubers/justpixel/blob/master/justpixel">justpixel</a> for windows users</p>
+
+<p>Download the <a href="https://github.com/OHSGithubers/justpixel/blob/master/justpixel.zip">justpixel.zip</a> for mac users</p>
