@@ -1,5 +1,8 @@
 from tkinter import *
 import math
+import random
+import threading
+import time
 
 
 class Game:
@@ -21,6 +24,11 @@ class Game:
 
 		# Game dands model components
 		self.dands = []
+
+		# Dands generation
+		self.dandgenerating = threading.Thread(target=self.dandGenerate)
+		self.dandgenerating.daemon = True
+		self.dandgenerating.start()
 
 		# Drawing canvas for game
 		self.canvas = Canvas(self.tk, width=600, height=600, bd=10, relief=SUNKEN)
@@ -88,6 +96,16 @@ class Game:
 			self.playerJumped = False
 
 		self.tk.after(10, self.loop)
+
+	def dandGenerate(self):
+		while True:
+			self.dands.append({
+				"x": random.randint(40, 520),
+				"y": random.randint(20, 100),
+				"yvel": 0,
+				"xvel": random.randint(-5, 5)
+				})
+			time.sleep(random.randint(1, 5))
 
 if __name__ == '__main__':
 	game = Game()
