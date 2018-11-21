@@ -15,6 +15,7 @@ class Game:
 		self.playerYv = 0
 		self.points = 0
 		self.playerMovingSide = None
+		self.playerJumped = False
 
 		# Drawing canvas for game
 		self.canvas = Canvas(self.tk, width=600, height=600, bd=10, relief=SUNKEN)
@@ -30,8 +31,9 @@ class Game:
 
 	def keyHandlePress(self, clck):
 		# Handle keys
-		if clck.keysym == "Up":
+		if clck.keysym == "Up" and not self.playerJumped:
 			self.playerYv = 8
+			self.playerJumped = True
 
 		if clck.keysym == "Left":
 			self.playerMovingSide = "Left"
@@ -41,6 +43,8 @@ class Game:
 
 	def keyHandleRelease(self, clck):
 		# Handle keys
+		if clck.keysym == "Up":
+			self.playerJumped = False
 		if clck.keysym == "Left":
 			self.playerXv -= 1
 			self.playerMovingSide = None
