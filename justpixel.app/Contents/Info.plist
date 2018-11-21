@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>main</string>
+	<string>justpixel</string>
 	<key>CFBundleExecutable</key>
-	<string>MacOS/main</string>
+	<string>MacOS/justpixel</string>
 	<key>CFBundleIconFile</key>
 	<string>Drawing.ico</string>
 	<key>CFBundleIdentifier</key>
-	<string>main</string>
+	<string>justpixel</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>main</string>
+	<string>justpixel</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
