@@ -3,6 +3,7 @@ import math
 import random
 import threading
 import time
+import copy
 
 
 class Game:
@@ -12,10 +13,13 @@ class Game:
 		self.tk.title("Just Pixel")
 		self.tk.resizable(0, 0)
 
+		# Drawing canvas for game
+		self.canvas = Canvas(self.tk, width=600, height=600, bd=10, relief=SUNKEN)
+		self.canvas.pack()
+
 		# Game player model components
 		self.gravdir = "Down"
-		self.playerX = 280
-		self.playerY = 560
+		self.player = self.canvas.create_rectangle(280, 560, 320, 600, fill="Green", outline="black")
 		self.playerXv = 0
 		self.playerYv = 0
 		self.points = 0
@@ -29,10 +33,6 @@ class Game:
 		self.dandgenerating = threading.Thread(target=self.dandGenerate)
 		self.dandgenerating.daemon = True
 		self.dandgenerating.start()
-
-		# Drawing canvas for game
-		self.canvas = Canvas(self.tk, width=600, height=600, bd=10, relief=SUNKEN)
-		self.canvas.pack()
 
 		# Key handling
 		self.tk.bind_all("<KeyPress>", self.keyHandlePress)
@@ -64,14 +64,11 @@ class Game:
 
 	def loop(self):
 		# Game loop
-		self.canvas.delete("all")
 
 		# Render player
-		self.canvas.create_rectangle(self.playerX, self.playerY, self.playerX + 40, self.playerY + 40, fill="Green", outline="black")
+		self.canvas.move(self.player, self.playerXv, -self.playerYv)
 
 		# Update player stats
-		self.playerX += self.playerXv
-		self.playerY -= self.playerYv
 		self.playerYv -= 0.3
 		if self.playerMovingSide == "Left":
 			self.playerXv -= 0.5
@@ -79,19 +76,22 @@ class Game:
 			self.playerXv += 0.5
 
 		# Add boundaries
-		if self.playerX < 20:
-			self.playerX = 20
+		playerX = copy.copy(self.canvas.coords(self.player)[0])
+		playerY = copy.copy(self.canvas.coords(self.player)[1])
+		if playerX < 20:
+			playerX = 20
 			self.playerXv = -self.playerXv / 3
-		if self.playerX > 560:
-			self.playerX = 560
+		if playerX > 560:
+			playerX = 560
 			self.playerXv = -self.playerXv / 3
-		if self.playerY < 0:
-			self.playerY = 0
+		if playerY < 0:
+			playerY = 0
 			self.playerYv = -self.playerYv / 3
-		if self.playerY > 560:
-			self.playerY = 560
+		if playerY > 560:
+			playerY = 560
 			self.playerYv = -self.playerYv / 3
 			self.playerJumped = False
+		self.canvas.move(self.player, playerX - self.canvas.coords(self.player)[0], playerY - self.canvas.coords(self.player)[1])
 
 		# Render dands and update dands
 		for dand in self.dands:
