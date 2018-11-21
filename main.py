@@ -57,11 +57,9 @@ class Game:
 	def keyHandleRelease(self, clck):
 		# Handle keys
 		if clck.keysym == "Left":
-			self.playerXv -= 1
 			self.playerMovingSide = None
 
 		if clck.keysym == "Right":
-			self.playerXv += 1
 			self.playerMovingSide = None
 
 	def loop(self):
