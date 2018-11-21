@@ -20,7 +20,7 @@ class Game:
 
 		# Key handling
 		self.tk.bind_all("<Key>", self.keyHandle)
-		
+
 		# Start game loop
 		self.tk.after(10, self.loop)
 		self.tk.mainloop()
@@ -29,8 +29,10 @@ class Game:
 		# Handle keys
 		if clck.keysym == "Up":
 			self.playerYv = 8
+
 		if clck.keysym == "Left":
 			self.playerXv -= 1
+			
 		if clck.keysym == "Right":
 			self.playerXv += 1
 
