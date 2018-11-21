@@ -26,6 +26,7 @@ class Game:
 		self.pointsd = self.canvas.create_text(300, 30, text="Points: 0", font=("Helvetica", 20, "bold"))
 		self.playerMovingSide = None
 		self.playerJumped = False
+		self.playerSmashed = False
 
 		# Game dands model components
 		self.dands = []
@@ -63,6 +64,10 @@ class Game:
 		if clck.keysym == "Left":
 			self.playerMovingSide = None
 
+		if (clck.keysym == "Down") and (not self.playerSmashed) and (not (self.canvas.coords(self.player)[1] >= 550)):
+			self.playerYv = -12
+			self.playerSmashed = True
+
 		if clck.keysym == "Right":
 			self.playerMovingSide = None
 
@@ -96,8 +101,12 @@ class Game:
 			self.playerYv = -self.playerYv / 3
 		if playerY > 560:
 			playerY = 560
-			self.playerYv = -self.playerYv / 3
+			if self.playerSmashed:
+				self.playerYv = -self.playerYv / 1.5
+			else:
+				self.playerYv = -self.playerYv / 3
 			self.playerJumped = False
+			self.playerSmashed = False
 		self.canvas.move(self.player, playerX - self.canvas.coords(self.player)[0], playerY - self.canvas.coords(self.player)[1])
 
 		# Render dands and update dands
@@ -108,7 +117,7 @@ class Game:
 			pcoords = self.canvas.coords(self.player)
 			if dand["object"] in self.canvas.find_overlapping(pcoords[0], pcoords[1], pcoords[2], pcoords[3]):
 				self.tk.bell()
-				if self.playerYv > 0:
+				if self.playerYv > 0 or self.playerSmashed:
 					self.points += 1
 					self.canvas.delete(dand["object"])
 					self.dands.remove(dand)
