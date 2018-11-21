@@ -71,16 +71,16 @@ class Game:
 		# Add boundaries
 		if self.playerX < 20:
 			self.playerX = 20
-			self.playerXv = -self.playerXv / 5
+			self.playerXv = -self.playerXv / 3
 		if self.playerX > 560:
 			self.playerX = 560
-			self.playerXv = -self.playerXv / 5
+			self.playerXv = -self.playerXv / 3
 		if self.playerY < 0:
 			self.playerY = 0
-			self.playerYv = -self.playerYv / 5
+			self.playerYv = -self.playerYv / 3
 		if self.playerY > 560:
 			self.playerY = 560
-			self.playerYv = -self.playerYv / 5
+			self.playerYv = -self.playerYv / 3
 			self.playerJumped = False
 
 		self.tk.after(10, self.loop)
