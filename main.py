@@ -95,9 +95,14 @@ class Game:
 			self.playerYv = -self.playerYv / 3
 			self.playerJumped = False
 
-		# Render dands
+		# Render dands and update dands
 		for dand in self.dands:
+			# Rendering dand
 			self.canvas.create_rectangle(dand["x"], dand["y"], dand["x"] + 10, dand["y"] + 10, fill="Red", outline="black")
+			# Updating dand
+			dand["x"] += dand["xvel"]
+			dand["y"] -= dand["yvel"]
+			dand["yvel"] -= 0.3
 
 		self.tk.after(10, self.loop)
 
