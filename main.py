@@ -32,7 +32,6 @@ class Game:
 	def keyHandlePress(self, clck):
 		# Handle keys
 		if (clck.keysym == "Up") and (not self.playerJumped):
-			print("ye")
 			self.playerYv = 12
 			self.playerJumped = True
 
