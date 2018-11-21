@@ -14,28 +14,40 @@ class Game:
 		self.playerXv = 0
 		self.playerYv = 0
 		self.points = 0
+		self.playerMovingSide = None
 
 		# Drawing canvas for game
 		self.canvas = Canvas(self.tk, width=600, height=600, bd=10, relief=SUNKEN)
 		self.canvas.pack()
 
 		# Key handling
-		self.tk.bind_all("<KeyPress>", self.keyHandle)
+		self.tk.bind_all("<KeyPress>", self.keyHandlePress)
+		self.tk.bind_all("<KeyRelease>", self.keyHandleRelease)
 
 		# Start game loop
 		self.tk.after(10, self.loop)
 		self.tk.mainloop()
 
-	def keyHandle(self, clck):
+	def keyHandlePress(self, clck):
 		# Handle keys
 		if clck.keysym == "Up":
 			self.playerYv = 8
 
 		if clck.keysym == "Left":
+			self.playerMovingSide = "Left"
+
+		if clck.keysym == "Right":
+			self.playerMovingSide = "Right"
+
+	def keyHandleRelease(self, clck):
+		# Handle keys
+		if clck.keysym == "Left":
 			self.playerXv -= 1
+			self.playerMovingSide = None
 
 		if clck.keysym == "Right":
 			self.playerXv += 1
+			self.playerMovingSide = None
 
 	def loop(self):
 		# Game loop
@@ -48,20 +60,24 @@ class Game:
 		self.playerX += self.playerXv
 		self.playerY -= self.playerYv
 		self.playerYv -= 0.3
+		if self.playerMovingSide == "Left":
+			self.playerXv -= 0.5
+		if self.playerMovingSide == "Right":
+			self.playerXv += 0.5
 
 		# Add boundaries
 		if self.playerX < 20:
 			self.playerX = 20
-			self.playerXv = -self.playerXv / 10
+			self.playerXv = -self.playerXv / 5
 		if self.playerX > 560:
 			self.playerX = 560
-			self.playerXv = -self.playerXv / 10
+			self.playerXv = -self.playerXv / 5
 		if self.playerY < 0:
 			self.playerY = 0
-			self.playerYv = -self.playerYv / 10
+			self.playerYv = -self.playerYv / 5
 		if self.playerY > 560:
 			self.playerY = 560
-			self.playerYv = -self.playerYv / 10
+			self.playerYv = -self.playerYv / 5
 
 		self.tk.after(10, self.loop)
 
