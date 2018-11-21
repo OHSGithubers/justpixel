@@ -109,7 +109,7 @@ class Game:
 					self.canvas.delete(dand["object"])
 					self.dands.remove(dand)
 				else:
-					self.canvas.create_text(300, 300, text="You died!", font=("Helvetica", 20, "bold"))
+					self.canvas.create_text(300, 300, text="You died!\nRun app again to restart", font=("Helvetica", 20, "bold"))
 					return
 			dand["yvel"] -= 0.3
 
