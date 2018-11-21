@@ -6,6 +6,8 @@ class Game:
 	def __init__(self):
 		# Game Class init
 		self.tk = Tk()
+		self.tk.title("Just Pixel")
+		self.tk.resizable(0, 0)
 
 		# Game model components
 		self.gravdir = "Down"
