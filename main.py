@@ -30,6 +30,9 @@ class Game:
 		# Game dands model components
 		self.dands = []
 
+		# Game difficulty data
+		self.difficulty = 1
+
 		# Dands generation
 		self.dandgenerating = threading.Thread(target=self.dandGenerate)
 		self.dandgenerating.daemon = True
@@ -108,6 +111,7 @@ class Game:
 					self.points += 1
 					self.canvas.delete(dand["object"])
 					self.dands.remove(dand)
+					self.difficulty += 0.1
 				else:
 					self.canvas.create_text(300, 300, text="You died!\nRun app again to restart", font=("Helvetica", 20, "bold"))
 					return
@@ -123,7 +127,7 @@ class Game:
 				"xvel": random.randint(-5, 5),
 				"object": self.canvas.create_rectangle(x, y, x + 10, y + 10, fill="Red", outline="black")
 				})
-			time.sleep(random.random())
+			time.sleep(random.random() * (1 / self.difficulty))
 
 if __name__ == '__main__':
 	game = Game()
