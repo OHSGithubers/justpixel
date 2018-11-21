@@ -105,7 +105,7 @@ class Game:
 				"yvel": 0,
 				"xvel": random.randint(-5, 5)
 				})
-			time.sleep(random.randint(1, 5))
+			time.sleep(random.random())
 
 if __name__ == '__main__':
 	game = Game()
