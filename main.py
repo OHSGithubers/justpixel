@@ -13,6 +13,7 @@ class Game:
 		self.playerY = 560
 		self.playerXv = 0
 		self.playerYv = 0
+		self.points = 0
 
 		# Drawing canvas for game
 		self.canvas = Canvas(self.tk, width=600, height=600)
