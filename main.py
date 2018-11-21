@@ -16,7 +16,7 @@ class Game:
 		self.points = 0
 
 		# Drawing canvas for game
-		self.canvas = Canvas(self.tk, width=600, height=600)
+		self.canvas = Canvas(self.tk, width=600, height=600, bd=10, relief=SUNKEN)
 		self.canvas.pack()
 
 		# Key handling
