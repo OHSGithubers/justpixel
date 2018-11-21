@@ -20,6 +20,7 @@ class Game:
 		self.playerJumped = False
 
 		# Game dands model components
+		self.dands = []
 
 		# Drawing canvas for game
 		self.canvas = Canvas(self.tk, width=600, height=600, bd=10, relief=SUNKEN)
