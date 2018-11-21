@@ -31,8 +31,9 @@ class Game:
 
 	def keyHandlePress(self, clck):
 		# Handle keys
-		if clck.keysym == "Up" and not self.playerJumped:
-			self.playerYv = 8
+		if (clck.keysym == "Up") and (not self.playerJumped):
+			print("ye")
+			self.playerYv = 12
 			self.playerJumped = True
 
 		if clck.keysym == "Left":
@@ -43,8 +44,6 @@ class Game:
 
 	def keyHandleRelease(self, clck):
 		# Handle keys
-		if clck.keysym == "Up":
-			self.playerJumped = False
 		if clck.keysym == "Left":
 			self.playerXv -= 1
 			self.playerMovingSide = None
@@ -82,6 +81,7 @@ class Game:
 		if self.playerY > 560:
 			self.playerY = 560
 			self.playerYv = -self.playerYv / 5
+			self.playerJumped = False
 
 		self.tk.after(10, self.loop)
 
