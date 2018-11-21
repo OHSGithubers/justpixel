@@ -9,7 +9,7 @@ class Game:
 		self.tk.title("Just Pixel")
 		self.tk.resizable(0, 0)
 
-		# Game model components
+		# Game player model components
 		self.gravdir = "Down"
 		self.playerX = 280
 		self.playerY = 560
@@ -18,6 +18,8 @@ class Game:
 		self.points = 0
 		self.playerMovingSide = None
 		self.playerJumped = False
+
+		# Game dands model components
 
 		# Drawing canvas for game
 		self.canvas = Canvas(self.tk, width=600, height=600, bd=10, relief=SUNKEN)
