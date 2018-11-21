@@ -40,6 +40,7 @@ class Game:
 	def loop(self):
 		# Game loop
 		self.canvas.delete("all")
+		
 		# Render player
 		self.canvas.create_rectangle(self.playerX, self.playerY, self.playerX + 40, self.playerY + 40, fill="Green", outline="black")
 		self.tk.after(10, self.loop)
