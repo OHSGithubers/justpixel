@@ -12,6 +12,7 @@ class Game:
 		self.tk = Tk()
 		self.tk.title("Just Pixel")
 		self.tk.resizable(0, 0)
+		self.dead = False
 
 		# Drawing canvas for game
 		self.canvas = Canvas(self.tk, width=600, height=600, bd=10, relief=SUNKEN)
@@ -46,6 +47,9 @@ class Game:
 		# Start game loop
 		self.tk.after(10, self.loop)
 		self.tk.mainloop()
+
+	def restartGame(self, clck):
+		self.tk.destroy()
 
 	def keyHandlePress(self, clck):
 		# Handle keys
@@ -123,7 +127,9 @@ class Game:
 					self.dands.remove(dand)
 					self.difficulty += 0.1
 				else:
-					self.canvas.create_text(300, 300, text="You died!\nRun app again to restart", font=("Helvetica", 20, "bold"))
+					self.dead = True
+					self.canvas.create_text(300, 300, text="You died!\nTap to restart", font=("Helvetica", 20, "bold"))
+					self.tk.bind_all("<Button-1>", self.restartGame)
 					return
 			dand["yvel"] -= 0.3
 
@@ -140,4 +146,7 @@ class Game:
 			time.sleep(random.random() * (1 / self.difficulty))
 
 if __name__ == '__main__':
-	game = Game()
+	while True:
+		game = Game()
+		if not game.dead:
+			break
