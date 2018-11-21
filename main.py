@@ -107,6 +107,7 @@ class Game:
 			# Handle points and death
 			pcoords = self.canvas.coords(self.player)
 			if dand["object"] in self.canvas.find_overlapping(pcoords[0], pcoords[1], pcoords[2], pcoords[3]):
+				self.tk.bell()
 				if self.playerYv > 0:
 					self.points += 1
 					self.canvas.delete(dand["object"])
