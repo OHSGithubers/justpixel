@@ -106,6 +106,8 @@ class Game:
 			if len(self.canvas.find_overlapping(pcoords[0], pcoords[1], pcoords[2], pcoords[3])) > 1:
 				if self.playerYv > 0:
 					self.points += 1
+					self.canvas.delete(dand["object"])
+					self.dands.remove(dand)
 				else:
 					self.canvas.create_text(300, 300, text="You died!", font=("Helvetica", 20, "bold"))
 					return
