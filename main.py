@@ -23,6 +23,7 @@ class Game:
 		self.playerXv = 0
 		self.playerYv = 0
 		self.points = 0
+		self.pointsd = self.canvas.create_text(300, 30, text="Points: 0", font=("Helvetica", 20, "bold"))
 		self.playerMovingSide = None
 		self.playerJumped = False
 
@@ -64,6 +65,9 @@ class Game:
 
 	def loop(self):
 		# Game loop
+
+		# Display points
+		self.canvas.itemconfig(self.pointsd, text="Points: " + str(self.points))
 
 		# Render player
 		self.canvas.move(self.player, self.playerXv, -self.playerYv)
