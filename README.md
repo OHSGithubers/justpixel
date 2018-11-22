@@ -1,5 +1,7 @@
 # justpixel
 
+![Game Logo](https://github.com/OHSGithubers/justpixel/blob/master/Drawing.ico)
+
 ### A fun pixel jumping and catching game.
 
 <p>This game will be fun in boring times!</p>
